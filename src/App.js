@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+// import Navbar from "./components/Navbar";
+import NavBar from "./components/Layout/NavBar";
+import Card from "./components/Card";
+import {Container, SimpleGrid} from "@chakra-ui/react";
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <NavBar/>
+      <Container maxW='100%'>
+      <SimpleGrid columns={[1, 4, 1, 4]}>
+        <Card/>
+        <Card/>
+        <Card/>
+        <Card/>
+        <Card/>
+        <Card/>
+        <Card/>
+      </SimpleGrid>
+      </Container>  
+    </>
   );
 }
 
