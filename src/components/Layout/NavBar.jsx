@@ -1,13 +1,11 @@
 import {
   Box,
   Flex,
-  Avatar,
   HStack,
   Link,
   IconButton,
   Button,
   Menu,
-  MenuButton,
   // MenuList,
   // MenuItem,
   // MenuDivider,
@@ -15,9 +13,10 @@ import {
   useColorModeValue,
   Stack,
   useColorMode,
-  Center,
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
+import CartWidget from './CartWidget';
+
 
 const Links = ['INICIO', 'PRODUCTOS', 'NOSOTROS', 'CONTACTO'];
 
@@ -66,22 +65,12 @@ export default function NavBar() {
           
           <Flex alignItems={'center'}>
             <Menu>
-            <Button onClick={toggleColorMode} mr='2'>
-                {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
-            </Button>
-              <MenuButton
-                as={Button}
-                rounded={'full'}
-                variant={'link'}
-                cursor={'pointer'}
-                minW={0}>
-                <Avatar
-                  size={'sm'}
-                  src={
-                    'https://www.figuartszonetoys.cl/wp-content/uploads/3289BC63-38BF-4597-9CC2-FED6C84BD306.jpeg'
-                  }
-                />
-              </MenuButton>
+            <CartWidget />
+              <Button onClick={toggleColorMode} mr='2'>
+                  {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+              </Button>
+              
+              
               {/* <MenuList>
                 <MenuItem>Link 1</MenuItem>
                 <MenuItem>Link 2</MenuItem>
@@ -103,10 +92,6 @@ export default function NavBar() {
           </Box>
         ) : null}
       </Box>
-      <Center>
-          <Box p={4}>TODAS LAS FIGURAS</Box>
-      </Center>
-     
     </>
   );
 }
