@@ -32,23 +32,21 @@ export default function NavBar() {
 
   const { isOpen, onToggle } = useDisclosure();
   const { colorMode, toggleColorMode } = useColorMode();
+
   return (
     <Box>
       <Flex
-        bgGradient="linear(to-l,#1f1c2c, #928dab)"
-        color={useColorModeValue("yellow.500", "white")}
+        bgGradient="linear(to-l,#08203e, #557c93)"
         minH={"60px"}
         py={{ base: 2 }}
         px={{ base: 4 }}
-        borderBottom={1}
-        borderStyle={"solid"}
         align={"center"}
-      >
+        >
         <Flex
           flex={{ base: 1, md: "auto" }}
           ml={{ base: -2 }}
           display={{ base: "flex", md: "none" }}
-        >
+          >
           <IconButton
             onClick={onToggle}
             icon={
@@ -77,8 +75,9 @@ export default function NavBar() {
           flex={{ base: 1, md: 0 }}
           justify={"flex-end"}
           direction={"row"}
-          spacing={6}
-        >
+          spacing={3}
+          color={useColorModeValue("red.600", "white")}
+          >
           <Button onClick={toggleColorMode}>
             {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
           </Button>
@@ -95,8 +94,8 @@ export default function NavBar() {
 
 const DesktopNav = () => {
   const linkColor = useColorModeValue("white", "gray.300");
-  const linkHoverColor = useColorModeValue("red.700", "white");
-  const popoverContentBgColor = useColorModeValue("#2c4f4c", "grey.200");
+  const linkHoverColor = useColorModeValue("red.600", "white");
+  const popoverContentBgColor = useColorModeValue("#2C3E50", "#2C3E50");
 
   return (
     <Stack direction={"row"} align={"center"} spacing={2}>
@@ -109,10 +108,10 @@ const DesktopNav = () => {
                   p={2}
                   fontSize={"lg"}
                   fontWeight={500}
-                  // color={linkColor}
+                  color={linkColor}
                   _hover={{
                     textDecoration: "none",
-                    // color: linkHoverColor,
+                    color: linkHoverColor,
                   }}
                 >
                   {navItem.label}
@@ -124,7 +123,7 @@ const DesktopNav = () => {
               <PopoverContent
                 border={0}
                 boxShadow={"xl"}
-                // bg={popoverContentBgColor}
+                bg={popoverContentBgColor}
                 p={2}
                 rounded={"xl"}
                 minW={"sm"}
@@ -151,15 +150,16 @@ const DesktopSubNav = ({ label, href, subLabel }) => {
         display={"block"}
         p={2}
         rounded={"md"}
-        // _hover={{ bg: useColorModeValue("gray.700", "white") }}
+        color={useColorModeValue("white", "white")}
+        _hover={{ bg: useColorModeValue("gray.800", "white") }}
       >
         <Stack direction={"row"} align={"center"}>
           <Box>
             <Text
               transition={"all .3s ease"}
-              // _groupHover={{ color: "white" }}
+               _groupHover={{ color: "red.600" }}
               fontWeight={500}
-            >
+              >
               {label}
             </Text>
             <Text fontSize={"sm"}>{subLabel}</Text>
@@ -173,7 +173,7 @@ const DesktopSubNav = ({ label, href, subLabel }) => {
             align={"center"}
             flex={1}
           >
-            <Icon color={"pink.400"} w={5} h={5} as={ChevronRightIcon} />
+            <Icon color={"red.600"} w={5} h={5} as={ChevronRightIcon} />
           </Flex>
         </Stack>
       </Flex>
@@ -184,7 +184,7 @@ const DesktopSubNav = ({ label, href, subLabel }) => {
 const MobileNav = () => {
   return (
     <Stack
-      bgGradient="linear(to-l,#003973, #E5E5BE)"
+      bgGradient="linear(to-l,#08203e, #557c93)"
       p={4}
       display={{ md: "none" }}
     >
@@ -200,24 +200,26 @@ const MobileNavItem = ({ label, children, href }) => {
 
   return (
     <Stack spacing={4} onClick={children && onToggle}>
-      <RouteLink to={href ?? "#"} key={label}>
+      <RouteLink to={href ?? '#'} key={label}>
         <Flex
           py={2}
-          justify={"space-between"}
-          align={"center"}
+          // as={Link}
+          // href={href ?? '#'}
+          justify={'space-between'}
+          align={'center'}
           _hover={{
-            textDecoration: "none",
+            textDecoration: 'none',
           }}
         >
-          <Text fontWeight={600} color={useColorModeValue("white", "red.500")}>
+          <Text fontWeight={600} color={useColorModeValue('white', 'white')}>
             {label}
           </Text>
           {children && (
             <Icon
               as={ChevronDownIcon}
-              transition={"all .25s ease-in-out"}
-              transform={isOpen ? "rotate(180deg)" : ""}
-              color={"white"}
+              transition={'all .25s ease-in-out'}
+              transform={isOpen ? 'rotate(180deg)' : ''}
+              color={'white'}
               w={6}
               h={6}
             />
@@ -225,17 +227,18 @@ const MobileNavItem = ({ label, children, href }) => {
         </Flex>
       </RouteLink>
 
-      <Collapse in={isOpen} animateOpacity style={{ marginTop: "0!important" }}>
+      <Collapse in={isOpen} animateOpacity style={{ marginTop: '0!important' }}>
         <Stack
           mt={2}
           pl={4}
           borderLeft={1}
-          borderStyle={"solid"}
-          borderColor={useColorModeValue("gray.500", "white")}
-          color="yellow.500"
+          borderStyle={'solid'}
+          borderColor={useColorModeValue('white', '#243748')}
+          color={useColorModeValue ('red.600', 'white')}
+          _groupHover={{ color: "red.600" }}
           fontWeight={500}
-          align={"start"}
-        >
+          align={'start'}
+         >
           {children &&
             children.map((child) => (
               <RouteLink to={child.href} key={child.label}>
