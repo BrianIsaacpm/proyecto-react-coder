@@ -1,7 +1,7 @@
 import { Box, Image, Badge } from "@chakra-ui/react";
 import { Link as RouteLink } from 'react-router-dom';
 
-function Card({ item }) {
+function Item ({ item }) {
   debugger;
 
   return (
@@ -65,4 +65,4 @@ function Card({ item }) {
   );
 }
 
-export default Card;
+export default Item;

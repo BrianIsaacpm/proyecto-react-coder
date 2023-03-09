@@ -59,7 +59,7 @@ export default function NavBar() {
         <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
           <RouteLink to="/" href={"/"}>
             <Image
-              width={140}
+              width={90}
               height={"auto"}
               src={window.location.origin + "/logo.png"}
               alt="AnimeStore"
@@ -172,7 +172,7 @@ const DesktopSubNav = ({ label, href, subLabel }) => {
             justify={"flex-end"}
             align={"center"}
             flex={1}
-          >
+            >
             <Icon color={"red.600"} w={5} h={5} as={ChevronRightIcon} />
           </Flex>
         </Stack>
@@ -182,6 +182,7 @@ const DesktopSubNav = ({ label, href, subLabel }) => {
 };
 
 const MobileNav = () => {
+
   return (
     <Stack
       bgGradient="linear(to-l,#08203e, #557c93)"
@@ -197,6 +198,8 @@ const MobileNav = () => {
 
 const MobileNavItem = ({ label, children, href }) => {
   const { isOpen, onToggle } = useDisclosure();
+  const linkColor = useColorModeValue("white", "gray.300");
+  const linkHoverColor = useColorModeValue("red.600", "white");
 
   return (
     <Stack spacing={4} onClick={children && onToggle}>
@@ -210,11 +213,19 @@ const MobileNavItem = ({ label, children, href }) => {
           _hover={{
             textDecoration: 'none',
           }}
-        >
-          <Text fontWeight={600} color={useColorModeValue('white', 'white')}>
-            {label}
+          >
+          <Text
+              fontWeight={500}
+              transition={"all .3s ease"}
+              color={linkColor}
+              _hover={{
+                textDecoration: 'none',
+                color: linkHoverColor,
+              }}
+               >
+              {label}
           </Text>
-          {children && (
+           {children && (
             <Icon
               as={ChevronDownIcon}
               transition={'all .25s ease-in-out'}
@@ -234,10 +245,10 @@ const MobileNavItem = ({ label, children, href }) => {
           borderLeft={1}
           borderStyle={'solid'}
           borderColor={useColorModeValue('white', '#243748')}
-          color={useColorModeValue ('red.600', 'white')}
-          _groupHover={{ color: "red.600" }}
+          color={useColorModeValue ('red', 'white')}
           fontWeight={500}
           align={'start'}
+          
          >
           {children &&
             children.map((child) => (
@@ -252,7 +263,6 @@ const MobileNavItem = ({ label, children, href }) => {
 };
 
 const NAV_ITEMS = [
-  { label: "INICIO", href: "/inicio" },
   {
     label: "PRODUCTOS",
     href: "/productos",

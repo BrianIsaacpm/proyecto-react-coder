@@ -1,3 +1,53 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Disallow:
+
+import { FaGithub, FaInstagram, FaLinkedin } from 'react-icons/fa';
+import { Text, Stack, IconButton, ButtonGroup } from '@chakra-ui/react';
+
+const Footer = () => {
+  return (
+    <>
+      <Stack
+        bgGradient="linear(to-l,#2C3E50, #0b2d54)"
+        py={{
+          base: '12',
+          md: '7',
+        }}
+        p={10}
+        spacing={{
+          base: '4',
+          md: '7',
+        }}
+      >
+        <Stack justify="space-between" direction="row" align="center" color={'white'}>
+          <ButtonGroup variant="ghost">
+            <IconButton
+              as="a"
+              href="https://www.linkedin.com/in/brian-isaac-pérez-meneses-152250153/"
+              aria-label="LinkedIn"
+              icon={<FaLinkedin fontSize="1.25rem" />}
+            />
+            <IconButton
+              as="a"
+              href="https://github.com/BrianIsaacpm/proyecto-react-coder"
+              aria-label="GitHub"
+              icon={<FaGithub fontSize="1.25rem" />}
+            />
+            <IconButton
+              as="a"
+              href="https://www.instagram.com/brianisaacpm/"
+              aria-label="Twitter"
+              icon={<FaInstagram fontSize="1.25rem" />}
+            />
+          </ButtonGroup>
+        </Stack>
+        <Text fontSize="sm" color="white">
+          &copy; {new Date().getFullYear()} MythCloth Store , Inc. Todos los Derechos Reservados.
+        </Text>
+      </Stack>
+    </>
+  );
+};
+
+export default Footer;
