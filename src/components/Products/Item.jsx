@@ -2,7 +2,6 @@ import { Box, Image, Badge } from "@chakra-ui/react";
 import { Link as RouteLink } from 'react-router-dom';
 
 function Item ({ item }) {
-  debugger;
 
   return (
     <Box

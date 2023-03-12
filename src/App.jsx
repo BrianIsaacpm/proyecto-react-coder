@@ -12,26 +12,29 @@ import {
 import ItemDetail from "./components/Products/ItemDetail";
 import Error404 from "./components/Error404/Error404";
 import Footer from "./components/Footer/Footer";
-import Contact from './components/Pages/Contact/Contact';
+import Contact from "./components/Pages/Contact/Contact";
+import CartContext from "./components/Context/CartContext";
+import useInitialState from "./components/Hooks/UseInitialState";
 
 function App() {
   return (
-    <BrowserRouter>
-      <NavBar />
-      <Routes>
-        <Route path="/productos" element={<ItemListContainer />} />
-         <Route
-              exact
-              path="contacto"
-              element={
-                <>
-                  <Contact />
-                </>
-              }
-            /> 
-        <Route exact path="item/:id" element={<ItemDetail />} />
-        <Route exact path="category/:id" element={<ItemListContainer />} />
-        {/* <Route
+    <CartContext.Provider value={useInitialState}>
+      <BrowserRouter>
+        <NavBar />
+        <Routes>
+          <Route path="/productos" element={<ItemListContainer />} />
+          <Route
+            exact
+            path="contacto"
+            element={
+              <>
+                <Contact />
+              </>
+            }
+          />
+          <Route exact path="item/:id" element={<ItemDetail />} />
+          <Route exact path="category/:id" element={<ItemListContainer />} />
+          {/* <Route
               exact
               path="cart"
               element={
@@ -40,50 +43,49 @@ function App() {
                 </>
               }
             /> */}
-        <Route
-          path="/"
-          exact
-          element={
-            <>
-              <VStack
-                w={"full"}
-                justify={"center"}
-                px={useBreakpointValue({ base: 4, md: 8 })}
-                bgGradient={"linear(to-r, blackAlpha.600, transparent)"}
-               >
-                <Stack
-                  maxW={"auto"}
-                  align={"flex-start"}
-                  maxH={"auto"}
-                  spacing={2}
+          <Route
+            path="/"
+            exact
+            element={
+              <>
+                <VStack
+                  w={"full"}
+                  justify={"center"}
+                  px={useBreakpointValue({ base: 4, md: 8 })}
+                  bgGradient={"linear(to-r, blackAlpha.600, transparent)"}
                 >
-                  <Image
-                    src={window.location.origin + "/bannerlogo.png"}
-                    alt="Dan Abramov"
-                  />
-                  <Text
-                    color={"white"}
-                    fontWeight={700}
-                    lineHeight={1.2}
-                    fontSize={useBreakpointValue({ base: "2xl", md: "2xl" })}
+                  <Stack
+                    maxW={"auto"}
+                    align={"flex-start"}
+                    maxH={"auto"}
+                    spacing={2}
                   >
-                    {/* Nuevos productos */}
-                  </Text>
-                </Stack>
-              </VStack>
+                    <Image
+                      src={window.location.origin + "/bannerlogo.png"}
+                      alt="Dan Abramov"
+                    />
+                    <Text
+                      color={"white"}
+                      fontWeight={700}
+                      lineHeight={1.2}
+                      fontSize={useBreakpointValue({ base: "2xl", md: "2xl" })}
+                    >
+                      {/* Nuevos productos */}
+                    </Text>
+                  </Stack>
+                </VStack>
 
-              <ItemListContainer />
-            </>
-          }
-        />
+                <ItemListContainer />
+              </>
+            }
+          />
 
-        <Route path="*" element={<Error404 />} />
-      </Routes>
-      <Footer />
-    </BrowserRouter>
+          <Route path="*" element={<Error404 />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+    </CartContext.Provider>
   );
 }
 
 export default App;
-
-
