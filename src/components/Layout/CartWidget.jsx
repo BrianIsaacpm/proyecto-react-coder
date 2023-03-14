@@ -1,19 +1,34 @@
-import React from "react";
+import { BsCart3 } from 'react-icons/bs';
+import { Badge, Text, Box, Flex } from '@chakra-ui/react';
+import { useContext } from 'react';
 
-import { Box, Badge, HStack } from "@chakra-ui/react";
-import { FiShoppingCart } from "react-icons/fi";
+import CartContext from './../Context/CartContext';
+import { Link } from 'react-router-dom';
 
 const CartWidget = () => {
+  const { getItemQty } = useContext(CartContext);
+
   return (
     <>
-      <HStack spacing="2px" mr='2'>
-        <Box>
-          <FiShoppingCart size='30'/>
-        </Box>
-        <Box>
-          <Badge mb='5'>0</Badge>
-        </Box>
-      </HStack>
+      <Link to={'/cart'}>
+        <Flex mr="10">
+            <>
+              <BsCart3 size={40} color="white" m={2} />
+              <Box>
+                <Text fontWeight="bold">
+                  <Badge 
+                  ml="1" 
+                  fontSize="1.3em"
+                  m={2} 
+                  colorScheme="red" 
+                  >
+                    {getItemQty()}
+                  </Badge>
+                </Text>
+              </Box>
+            </>
+        </Flex>
+      </Link>
     </>
   );
 };

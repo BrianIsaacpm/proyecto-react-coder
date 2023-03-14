@@ -6,6 +6,7 @@ import {
     Center,
     Tag,
     TagLeftIcon,
+    useColorModeValue,
     TagLabel,
     Stack,
   } from '@chakra-ui/react';
@@ -40,7 +41,9 @@ import {
               onClick={() => {
                 onAdd();
               }}
-              colorScheme="purple"
+              color={useColorModeValue("white","white")}
+              bgColor={useColorModeValue("#aa0505","#497e93")}
+              _hover={{ bg: useColorModeValue("#D80000", "#1EA8BE") }}
               variant="solid"
               size={'sm'}
             >
@@ -49,7 +52,12 @@ import {
           </Stack>
           <Divider orientation="vertical" m={2} />
           <Stack direction="row" w="100%">
-            <Button colorScheme="pink" size={'sm'} onClick={handleDecrement}>
+            <Button 
+            color={useColorModeValue("white","white")}
+            bgColor={useColorModeValue("#aa0505","#497e93")}
+            _hover={{ bg: useColorModeValue("#D80000", "#1EA8BE") }}
+            size={'sm'} 
+            onClick={handleDecrement}>
               -
             </Button>
             <Input
@@ -64,7 +72,12 @@ import {
               readOnly={true}
             />
   
-            <Button colorScheme="pink" size={'sm'} onClick={handleIncrement}>
+            <Button 
+            color={useColorModeValue("white","white")}
+            bgColor={useColorModeValue("#aa0505","#497e93")}
+            _hover={{ bg: useColorModeValue("#D80000", "#1EA8BE") }}
+            size={'sm'} 
+            onClick={handleIncrement}>
               +
             </Button>
           </Stack>

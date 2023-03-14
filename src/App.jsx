@@ -15,10 +15,12 @@ import Footer from "./components/Footer/Footer";
 import Contact from "./components/Pages/Contact/Contact";
 import CartContext from "./components/Context/CartContext";
 import useInitialState from "./components/Hooks/UseInitialState";
+import { Cart } from './components/Cart/Cart';
 
 function App() {
+  const initialState = useInitialState();
   return (
-    <CartContext.Provider value={useInitialState}>
+    <CartContext.Provider value={initialState}>
       <BrowserRouter>
         <NavBar />
         <Routes>
@@ -34,7 +36,7 @@ function App() {
           />
           <Route exact path="item/:id" element={<ItemDetail />} />
           <Route exact path="category/:id" element={<ItemListContainer />} />
-          {/* <Route
+          <Route
               exact
               path="cart"
               element={
@@ -42,7 +44,7 @@ function App() {
                   <Cart />
                 </>
               }
-            /> */}
+            />
           <Route
             path="/"
             exact

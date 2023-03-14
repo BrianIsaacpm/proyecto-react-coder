@@ -104,12 +104,7 @@ import {
               return errors;
             }}
             onSubmit={handleSubmit}
-            // onSubmit={(values, { setSubmitting }) => {
-            //   setTimeout(() => {
-            //     alert(JSON.stringify(values, null, 2));
-            //     setSubmitting(false);
-            //   }, 400);
-            // }}
+          
           >
             {({ values, errors, touched, handleChange, handleBlur, isSubmitting }) => (
               <Form>

@@ -18,7 +18,7 @@ import {
   ModalCloseButton,
   ModalBody,
 } from "@chakra-ui/react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { FiCheck } from "react-icons/fi";
 import { BsFillArrowDownLeftCircleFill } from "react-icons/bs";
@@ -26,14 +26,14 @@ import { getProductsById } from "../../firebaseConfig/contextData";
 import ItemCount from "../ItemCount/ItemCount";
 import CartContext from "../Context/CartContext";
 
-const ItemDetail = ({ item, loading }) => {
+const ItemDetail = ({ loading }) => {
   const [detail, setDetail] = useState({});
   const [cant, setCant] = useState(1);
   const { id } = useParams();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [image, setImage] = useState("");
 
-  const { addToCart } = useContext(CartContext);
+  const { addToCart, formatPrice } = useContext(CartContext);
 
   const handleImageClick = (newSize) => {
     setImage(newSize);
@@ -41,8 +41,10 @@ const ItemDetail = ({ item, loading }) => {
   };
 
   const onAdd = () => {
-    addToCart(item);
+    addToCart(detail, cant);
   };
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     getProductsById(id).then((data) => {
@@ -56,7 +58,6 @@ const ItemDetail = ({ item, loading }) => {
         p={2}
         display={{ md: "flex" }}
         bg={useColorModeValue("white", "gray.800")}
-        // maxW="100%"
         rounded="lg"
         shadow="lg"
         position="relative"
@@ -68,7 +69,7 @@ const ItemDetail = ({ item, loading }) => {
               width={{ md: 40, base: 20 }}
               height={{ md: 40, base: 20 }}
               m={2}
-              src={detail.img2}
+              src={detail?.img2}
               onClick={() => handleImageClick(detail.img2)}
             />
           </Skeleton>
@@ -78,7 +79,7 @@ const ItemDetail = ({ item, loading }) => {
               width={{ md: 40, base: 20 }}
               height={{ md: 40, base: 20 }}
               m={2}
-              src={detail.img3}
+              src={detail?.img3}
               onClick={() => handleImageClick(detail.img3)}
             />
           </Skeleton>
@@ -88,7 +89,7 @@ const ItemDetail = ({ item, loading }) => {
               width={{ md: 40, base: 20 }}
               height={{ md: 40, base: 20 }}
               m={2}
-              src={detail.img4}
+              src={detail?.img4}
               onClick={() => handleImageClick(detail.img4)}
             />
           </Skeleton>
@@ -98,7 +99,7 @@ const ItemDetail = ({ item, loading }) => {
               width={{ md: 40, base: 20 }}
               height={{ md: 40, base: 20 }}
               m={2}
-              src={detail.img5}
+              src={detail?.img5}
               onClick={() => handleImageClick(detail.img5)}
             />
           </Skeleton>
@@ -157,7 +158,7 @@ const ItemDetail = ({ item, loading }) => {
                   fontSize="3xl"
                   fontWeight={"bold"}
                 >
-                  ${detail.value}
+                 {formatPrice(detail.value)}
                 </Box>
                 <ItemCount
                   label="Add to cart"
@@ -173,14 +174,14 @@ const ItemDetail = ({ item, loading }) => {
                     w="100%"
                     colorScheme="blue"
                     variant="outline"
-                    // onClick={() => navigate('/cart')}
+                    onClick={() => navigate("/cart")}
                   >
                     Finalizar compra
                   </Button>
                 </Stack>
                 <Box as="span" ml="4" color="gray.600" fontSize="sm">
                   <Link to={"/"} display={"flex"}>
-                    Volver al home
+                    Volver al Inicio
                     <Icon
                       as={BsFillArrowDownLeftCircleFill}
                       h={3}
