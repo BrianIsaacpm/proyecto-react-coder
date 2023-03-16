@@ -58,8 +58,6 @@ export const Buyer = () => {
     try {
       setTimeout(async () => {
         const ordersResponse = await setOrder(state);
-        console.log({ ordersResponse });
-        console.log({ state });
         if (ordersResponse.id !== "" || ordersResponse.id !== undefined) {
           toastIdRef.current = toast({
             title: `Tu Orden con N°${ordersResponse.id} fue creada éxitosamente 🙌🎉 !`,
@@ -112,6 +110,7 @@ export const Buyer = () => {
                 component="div"
                 name="email"
                 className="field-error text-danger"
+                
               />
             </FormControl>
             <FormControl>
