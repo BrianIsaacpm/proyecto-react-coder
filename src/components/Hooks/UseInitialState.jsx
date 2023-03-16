@@ -64,7 +64,6 @@ const useInitialState = () => {
 
     //obtener cantidad de items del carro
     const getItemQty = () => {
-      debugger;
       const quantity = state.cart.reduce((acc, item) => (acc += item.quantity), 0);
       return quantity;
     };

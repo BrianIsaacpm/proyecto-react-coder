@@ -18,7 +18,7 @@ const CartWidget = () => {
                 <Text fontWeight="bold">
                   <Badge 
                   ml="1" 
-                  fontSize="1.3em"
+                  fontSize="1.1em"
                   m={2} 
                   colorScheme="red" 
                   >

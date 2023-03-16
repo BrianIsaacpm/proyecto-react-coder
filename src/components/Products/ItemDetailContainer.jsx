@@ -9,14 +9,6 @@ const ItemDetailContainer = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // getItem(parseInt(id))
-    //   .then((response) => {
-    //     setProductById(response);
-    //   })
-    //   .catch((error) => {
-    //     console.log('Ocurrio un error: ' + error);
-    //   });
-
     (async () => {
       getItem(id)
         .then((response) => {

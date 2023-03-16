@@ -1,4 +1,3 @@
-
 import {
   Box,
   Flex,
@@ -29,7 +28,6 @@ import CartWidget from "./CartWidget";
 import { Link as RouteLink } from "react-router-dom";
 
 export default function NavBar() {
-
   const { isOpen, onToggle } = useDisclosure();
   const { colorMode, toggleColorMode } = useColorMode();
 
@@ -41,12 +39,12 @@ export default function NavBar() {
         py={{ base: 2 }}
         px={{ base: 4 }}
         align={"center"}
-        >
+      >
         <Flex
           flex={{ base: 1, md: "auto" }}
           ml={{ base: -2 }}
           display={{ base: "flex", md: "none" }}
-          >
+        >
           <IconButton
             onClick={onToggle}
             icon={
@@ -77,7 +75,7 @@ export default function NavBar() {
           direction={"row"}
           spacing={3}
           color={useColorModeValue("red.600", "white")}
-          >
+        >
           <Button onClick={toggleColorMode}>
             {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
           </Button>
@@ -157,9 +155,9 @@ const DesktopSubNav = ({ label, href, subLabel }) => {
           <Box>
             <Text
               transition={"all .3s ease"}
-               _groupHover={{ color: "red.600" }}
+              _groupHover={{ color: "red.600" }}
               fontWeight={500}
-              >
+            >
               {label}
             </Text>
             <Text fontSize={"sm"}>{subLabel}</Text>
@@ -172,7 +170,7 @@ const DesktopSubNav = ({ label, href, subLabel }) => {
             justify={"flex-end"}
             align={"center"}
             flex={1}
-            >
+          >
             <Icon color={"red.600"} w={5} h={5} as={ChevronRightIcon} />
           </Flex>
         </Stack>
@@ -182,7 +180,6 @@ const DesktopSubNav = ({ label, href, subLabel }) => {
 };
 
 const MobileNav = () => {
-
   return (
     <Stack
       bgGradient="linear(to-l,#08203e, #557c93)"
@@ -203,34 +200,32 @@ const MobileNavItem = ({ label, children, href }) => {
 
   return (
     <Stack spacing={4} onClick={children && onToggle}>
-      <RouteLink to={href ?? '#'} key={label}>
+      <RouteLink to={href ?? "#"} key={label}>
         <Flex
           py={2}
-          // as={Link}
-          // href={href ?? '#'}
-          justify={'space-between'}
-          align={'center'}
+          justify={"space-between"}
+          align={"center"}
           _hover={{
-            textDecoration: 'none',
+            textDecoration: "none",
           }}
-          >
+        >
           <Text
-              fontWeight={500}
-              transition={"all .3s ease"}
-              color={linkColor}
-              _hover={{
-                textDecoration: 'none',
-                color: linkHoverColor,
-              }}
-               >
-              {label}
+            fontWeight={500}
+            transition={"all .3s ease"}
+            color={linkColor}
+            _hover={{
+              textDecoration: "none",
+              color: linkHoverColor,
+            }}
+          >
+            {label}
           </Text>
-           {children && (
+          {children && (
             <Icon
               as={ChevronDownIcon}
-              transition={'all .25s ease-in-out'}
-              transform={isOpen ? 'rotate(180deg)' : ''}
-              color={'white'}
+              transition={"all .25s ease-in-out"}
+              transform={isOpen ? "rotate(180deg)" : ""}
+              color={"white"}
               w={6}
               h={6}
             />
@@ -238,18 +233,17 @@ const MobileNavItem = ({ label, children, href }) => {
         </Flex>
       </RouteLink>
 
-      <Collapse in={isOpen} animateOpacity style={{ marginTop: '0!important' }}>
+      <Collapse in={isOpen} animateOpacity style={{ marginTop: "0!important" }}>
         <Stack
           mt={2}
           pl={4}
           borderLeft={1}
-          borderStyle={'solid'}
-          borderColor={useColorModeValue('white', '#243748')}
-          color={useColorModeValue ('red', 'white')}
+          borderStyle={"solid"}
+          borderColor={useColorModeValue("white", "#243748")}
+          color={useColorModeValue("red", "white")}
           fontWeight={500}
-          align={'start'}
-          
-         >
+          align={"start"}
+        >
           {children &&
             children.map((child) => (
               <RouteLink to={child.href} key={child.label}>
@@ -266,6 +260,9 @@ const NAV_ITEMS = [
   {
     label: "PRODUCTOS",
     href: "/productos",
+  },
+  {
+    label: 'CATEGORIAS',
     children: [
       { label: "Santos de Oro", href: "/category/santos-de-oro" },
       { label: "Santos de Plata", href: "/category/santos-de-plata" },

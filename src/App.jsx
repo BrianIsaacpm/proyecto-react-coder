@@ -7,6 +7,7 @@ import {
   Stack,
   Text,
   useBreakpointValue,
+  useColorModeValue,
   Image,
 } from "@chakra-ui/react";
 import ItemDetail from "./components/Products/ItemDetail";
@@ -15,16 +16,54 @@ import Footer from "./components/Footer/Footer";
 import Contact from "./components/Pages/Contact/Contact";
 import CartContext from "./components/Context/CartContext";
 import useInitialState from "./components/Hooks/UseInitialState";
-import { Cart } from './components/Cart/Cart';
+import { Cart } from "./components/Cart/Cart";
 
 function App() {
   const initialState = useInitialState();
+  const bgGradient1 = useColorModeValue(
+    "linear(to-r, blackAlpha.400, transparent)"
+  );
+  const bgGradient2 = useColorModeValue("linear(to-r, grey.100, transparent)");
+
   return (
     <CartContext.Provider value={initialState}>
       <BrowserRouter>
         <NavBar />
         <Routes>
-          <Route path="/productos" element={<ItemListContainer />} />
+          <Route
+            path="/productos"
+            exact
+            element={
+              <>
+                <VStack
+                  w={"full"}
+                  justify={"center"}
+                  px={useBreakpointValue({ base: 4, md: 4 })}
+                  bgGradient={useColorModeValue(bgGradient1, bgGradient2)}
+                >
+                  <Stack
+                    maxW={"auto"}
+                    align={"flex-start"}
+                    maxH={"auto"}
+                    spacing={2}
+                  >
+                    <Image
+                      src={window.location.origin + "/bannerlogo2.png"}
+                      alt="Banner Myth Cloth"
+                    />
+                    <Text
+                      color={"white"}
+                      fontWeight={700}
+                      lineHeight={1.2}
+                      fontSize={useBreakpointValue({ base: "2xl", md: "2xl" })}
+                    ></Text>
+                  </Stack>
+                </VStack>
+
+                <ItemListContainer />
+              </>
+            }
+          />
           <Route
             exact
             path="contacto"
@@ -35,16 +74,49 @@ function App() {
             }
           />
           <Route exact path="item/:id" element={<ItemDetail />} />
-          <Route exact path="category/:id" element={<ItemListContainer />} />
           <Route
-              exact
-              path="cart"
-              element={
-                <>
-                  <Cart />
-                </>
-              }
-            />
+            exact
+            path="category/:id"
+            element={
+              <>
+                <VStack
+                  w={"full"}
+                  justify={"center"}
+                  px={useBreakpointValue({ base: 4, md: 4 })}
+                  bgGradient={"linear(to-r, blackAlpha.400, transparent)"}
+                >
+                  <Stack
+                    maxW={"auto"}
+                    align={"flex-start"}
+                    maxH={"auto"}
+                    spacing={2}
+                  >
+                    <Image
+                      src={window.location.origin + "/bannerlogo3.png"}
+                      alt="Banner Myth Cloth"
+                    />
+                    <Text
+                      color={"white"}
+                      fontWeight={700}
+                      lineHeight={1.2}
+                      fontSize={useBreakpointValue({ base: "2xl", md: "2xl" })}
+                    ></Text>
+                  </Stack>
+                </VStack>
+
+                <ItemListContainer />
+              </>
+            }
+          />
+          <Route
+            exact
+            path="cart"
+            element={
+              <>
+                <Cart />
+              </>
+            }
+          />
           <Route
             path="/"
             exact
@@ -53,8 +125,8 @@ function App() {
                 <VStack
                   w={"full"}
                   justify={"center"}
-                  px={useBreakpointValue({ base: 4, md: 8 })}
-                  bgGradient={"linear(to-r, blackAlpha.600, transparent)"}
+                  px={useBreakpointValue({ base: 4, md: 4 })}
+                  bgGradient={"linear(to-r, blackAlpha.400, transparent)"}
                 >
                   <Stack
                     maxW={"auto"}
@@ -64,16 +136,14 @@ function App() {
                   >
                     <Image
                       src={window.location.origin + "/bannerlogo.png"}
-                      alt="Dan Abramov"
+                      alt="Banner Myth Cloth"
                     />
                     <Text
                       color={"white"}
                       fontWeight={700}
                       lineHeight={1.2}
                       fontSize={useBreakpointValue({ base: "2xl", md: "2xl" })}
-                    >
-                      {/* Nuevos productos */}
-                    </Text>
+                    ></Text>
                   </Stack>
                 </VStack>
 

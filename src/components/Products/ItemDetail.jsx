@@ -35,6 +35,8 @@ const ItemDetail = ({ loading }) => {
 
   const { addToCart, formatPrice } = useContext(CartContext);
 
+  const backToHome = useColorModeValue("#5D6D7E ", "#A6ACAF");
+
   const handleImageClick = (newSize) => {
     setImage(newSize);
     onOpen();
@@ -57,7 +59,7 @@ const ItemDetail = ({ loading }) => {
       <Box
         p={2}
         display={{ md: "flex" }}
-        bg={useColorModeValue("white", "gray.800")}
+        bg={useColorModeValue("#EBEDEF", "gray.700")}
         rounded="lg"
         shadow="lg"
         position="relative"
@@ -66,6 +68,7 @@ const ItemDetail = ({ loading }) => {
           <Skeleton isLoaded={!loading}>
             <Image
               rounded="lg"
+              boxSize="sm"
               width={{ md: 40, base: 20 }}
               height={{ md: 40, base: 20 }}
               m={2}
@@ -76,6 +79,7 @@ const ItemDetail = ({ loading }) => {
           <Skeleton isLoaded={!loading}>
             <Image
               rounded="lg"
+              boxSize="sm"
               width={{ md: 40, base: 20 }}
               height={{ md: 40, base: 20 }}
               m={2}
@@ -86,6 +90,7 @@ const ItemDetail = ({ loading }) => {
           <Skeleton isLoaded={!loading}>
             <Image
               rounded="lg"
+              boxSize="sm"
               width={{ md: 40, base: 20 }}
               height={{ md: 40, base: 20 }}
               m={2}
@@ -96,6 +101,7 @@ const ItemDetail = ({ loading }) => {
           <Skeleton isLoaded={!loading}>
             <Image
               rounded="lg"
+              boxSize="sm"
               width={{ md: 40, base: 20 }}
               height={{ md: 40, base: 20 }}
               m={2}
@@ -109,7 +115,6 @@ const ItemDetail = ({ loading }) => {
           <Skeleton isLoaded={!loading}>
             <Image
               rounded="lg"
-              boxSize="sm"
               width={{ md: "md", base: "md" }}
               height={{ md: "md" }}
               src={detail.img1}
@@ -158,7 +163,7 @@ const ItemDetail = ({ loading }) => {
                   fontSize="3xl"
                   fontWeight={"bold"}
                 >
-                 {formatPrice(detail.value)}
+                  {formatPrice(detail.value)}
                 </Box>
                 <ItemCount
                   label="Add to cart"
@@ -179,7 +184,7 @@ const ItemDetail = ({ loading }) => {
                     Finalizar compra
                   </Button>
                 </Stack>
-                <Box as="span" ml="4" color="gray.600" fontSize="sm">
+                <Box as="span" ml="4" color={backToHome} fontSize="sm">
                   <Link to={"/"} display={"flex"}>
                     Volver al Inicio
                     <Icon

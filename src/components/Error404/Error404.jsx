@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Box, Heading, Text, Button, Image } from '@chakra-ui/react';
+import { Box, Heading, Text, Button, Image, useColorModeValue } from '@chakra-ui/react';
 
 export default function Error404() {
   return (
@@ -8,7 +8,7 @@ export default function Error404() {
         display="inline-block"
         as="h2"
         size="2xl"
-        bgGradient="linear(to-r, #7e0a34, #aa0505)"
+        bgColor={useColorModeValue("#aa0505", "#808B96")}
         backgroundClip="text"
         p={4}
       >
@@ -22,17 +22,17 @@ export default function Error404() {
         />
         Ups ! Pagina no encontrada
       </Heading>
-      <Text color={'#aa0505'} mb={6}>
+      <Text 
+      color={useColorModeValue("#7B241C", "#808B96 ")}
+      mb={6}>
         La pagina que intentas acceder no existe.
       </Text>
       <Link to={'/'} display={'flex'}>
         <Button
-          bgGradient="linear(to-r, #7e0a34, #650004, #aa0505)"
-          color="white"
+          color={useColorModeValue("white", "white")}
+          bgColor={useColorModeValue("#aa0505", "#1F618D")}
           variant="solid"
-          _hover={{
-            bg: '#497e93',
-          }}
+          _hover={{ bg: useColorModeValue("#7B241C  ", "#496e93") }}
         >
           Volver al Home
         </Button>

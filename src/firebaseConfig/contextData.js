@@ -1,4 +1,4 @@
-import { collection, getDocs, doc, getDoc, addDoc } from "firebase/firestore";
+import { collection, getDocs, doc, getDoc, addDoc, where, query } from "firebase/firestore";
 import { db } from "./firebase.js";
 
 export const getProducts = async () => {
@@ -21,6 +21,21 @@ export const getProductsById = async (id) => {
     console.log("Ocurrió un error", error);
   }
 };
+
+export const getProductsBycategoryId = async (category) => {
+  try {
+    const q = query(collection(db, 'mythcloth'), where('category', '==', category));
+
+    const docSnap = await getDocs(q);
+
+    return docSnap.docs.map((doc) => {
+      return { id: doc.id, ...doc.data() };
+    });
+  } catch (error) {
+    console.log('Ocurrió un error', error);
+  }
+};
+
 
 export const getItem = async (id) => {
   try {
