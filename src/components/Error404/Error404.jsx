@@ -19,6 +19,7 @@ export default function Error404() {
           w="full"
           h="auto"
           src={window.location.origin + '/notfound.gif'}
+          alt="Gif Error 404"
         />
         Ups ! Pagina no encontrada
       </Heading>
